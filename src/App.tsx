@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useEffect, useState } from 'react';
+
+import type { Todo } from './types';
+import { getTodos, convertTodosToArray } from './services/flask-demo/todos';
+import { Todos } from './components/todos';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [todos, setTodos] = useState<Todo[]>([]);
+
+    useEffect(() => {
+        getTodos().then(convertTodosToArray).then(setTodos)
+    }, [])
+
+    return (
+        <div className="App">
+            <Todos todos={todos}/>
+        </div>
+    );
 }
 
 export default App;
