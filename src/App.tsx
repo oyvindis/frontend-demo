@@ -4,6 +4,7 @@ import type { Todo } from './types';
 import { getTodos, convertTodosToArray } from './services/flask-demo/todos';
 import { Todos } from './components/todos';
 
+import SC from './styled';
 
 function App() {
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -13,9 +14,9 @@ function App() {
     }, [])
 
     return (
-        <div className="App">
+        <SC.App>
             <Todos todos={todos}/>
-        </div>
+        </SC.App>
     );
 }
 
