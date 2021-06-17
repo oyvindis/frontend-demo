@@ -16,6 +16,7 @@ function App() {
     return (
         <SC.App>
             <Todos todos={todos}/>
+            <div>Footer</div>
         </SC.App>
     );
 }
